@@ -1,0 +1,477 @@
+.container{
+    width:70%;
+    padding-left:10%;
+    padding-right:10%;
+
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+  background: white;
+}
+
+#introduction
+{
+    padding-top:0;
+    padding-right:40px;
+    font-family: 'Raleway';
+    font-size:15px;
+    line-height:1.5;
+
+}
+ .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      height:400px;
+      margin: auto;
+  }
+
+#mycarousel {
+    height:400px;
+    display:block;
+    resize:both;
+    overflow:auto;
+}
+
+.image-slider-wrapper{
+    overflow: hidden;
+}
+#image_slider{
+    width:70%;
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    padding:0;
+    left:0;
+    border:1px solid gray;
+}
+#image_slider li{
+    position:relative;
+    max-width: 100%;
+    list-style: none;
+    left: 0;
+    margin:auto;
+}
+
+.nvgt{
+    position:absolute;
+    top: 120px;
+    height: 50px;
+    width: 30px;
+    opacity: 0.6;
+}
+.nvgt:hover{
+    opacity: 0.9;
+}
+#prev{
+    background: #000 url('https://dl.dropboxusercontent.com/u/65639888/image/prev.png') no-repeat center;
+    left: 0;
+}
+#next{
+    background: #000 url('https://dl.dropboxusercontent.com/u/65639888/image/next.png') no-repeat center;
+    right: 0;
+}
+
+/*CSS FOR HORIZONTAL MENU */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+#cssmenu {
+  width: auto;
+  margin-top:15px;
+  background-color:white;
+}
+#cssmenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: block;
+  zoom: 1;
+}
+#cssmenu ul:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#cssmenu ul li {
+  display: inline-block;
+  margin:0px,15px;
+  margin: 0;
+}
+#cssmenu.align-right ul li {
+  float: right;
+}
+#cssmenu.align-center ul {
+  text-align: center;
+}
+#cssmenu ul li a {
+  color: #A9A9A9;
+  text-decoration: none;
+  display: block;
+  padding: 15px 25px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  position: relative;
+  /*-webkit-transition: color .25s;
+  -moz-transition: color .25s;
+  -ms-transition: color .25s;
+  -o-transition: color .25s;
+  transition: color .25s;*/
+}
+#cssmenu ul li a:hover {
+  color: purple;
+}
+#cssmenu ul li a:hover:before {
+  width: 100%;
+}
+#cssmenu ul li a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -3px;
+  top: 19px;
+  height: 6px;
+  width: 6px;
+  background: #EDEDFA;
+  opacity: .5;
+}
+#cssmenu ul li a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #EDEDFA;
+  -webkit-transition: width .25s;
+  -moz-transition: width .25s;
+  -ms-transition: width .25s;
+  -o-transition: width .25s;
+  transition: width .25s;
+}
+#cssmenu ul li.last > a:after,
+#cssmenu ul li:last-child > a:after {
+  display: none;
+}
+#cssmenu ul li.active a {
+  color: black;
+}
+#cssmenu ul li.active a:before {
+  width: 100%;
+}
+#cssmenu.align-right li.last > a:after,
+#cssmenu.align-right li:last-child > a:after {
+  display: block;
+}
+#cssmenu.align-right li:first-child a:after {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  #cssmenu ul li {
+    float: none;
+    display: block;
+  }
+  #cssmenu ul li a {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #7f2d9a;
+  }
+  #cssmenu ul li.last > a,
+  #cssmenu ul li:last-child > a {
+    border: 0;
+  }
+  #cssmenu ul li a:after {
+    display: none;
+  }
+  #cssmenu ul li a:before {
+    display: none;
+  }
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.history {
+    font-family:'Raleway';
+    font-size:15px;
+    line-height:1.5;
+}
+
+#profilePic
+{
+    height:390px;
+    width:350px;
+    padding:50px;
+}
+
+#profilePic:hover span.text-content
+{
+    opacity: 1;
+}
+
+td {
+    width:350px;
+    height:340px;
+}
+
+.ih-item.circle.effect5 {
+  -webkit-perspective: 900px;
+  -moz-perspective: 900px;
+  perspective: 900px;
+}
+.ih-item.circle.effect5.colored .info .info-back {
+  background: #1a4a72;
+  background: rgba(26, 74, 114, 0.6);
+}
+.ih-item.circle.effect5 .info {
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.ih-item.circle.effect5 .info .info-back {
+  visibility: hidden;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: rotate3d(0, 1, 0, 180deg);
+  -moz-transform: rotate3d(0, 1, 0, 180deg);
+  -ms-transform: rotate3d(0, 1, 0, 180deg);
+  -o-transform: rotate3d(0, 1, 0, 180deg);
+  transform: rotate3d(0, 1, 0, 180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.ih-item.circle.effect5 .info h3 {
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+  letter-spacing: 2px;
+  font-size: 22px;
+  margin: 0 30px;
+  padding: 55px 0 0 0;
+  height: 110px;
+  text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.ih-item.circle.effect5 .info p {
+  color: white;
+  padding: 10px 5px;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+.ih-item.circle.effect5 a:hover .info {
+  -webkit-transform: rotate3d(0, 1, 0, -180deg);
+  -moz-transform: rotate3d(0, 1, 0, -180deg);
+  -ms-transform: rotate3d(0, 1, 0, -180deg);
+  -o-transform: rotate3d(0, 1, 0, -180deg);
+  transform: rotate3d(0, 1, 0, -180deg);
+}
+.ih-item.circle.effect5 a:hover .info .info-back {
+  visibility: visible;
+}
+
+.ih-item {
+  position: relative;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item,
+.ih-item * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ih-item a {
+  color: #333;
+}
+.ih-item a:hover {
+  text-decoration: none;
+}
+.ih-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.ih-item.circle {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.ih-item.circle .img {
+  position: relative;
+  width: 300px;
+  height: 340px;
+  border-radius: 50%;
+}
+.ih-item.circle .img:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item.circle .img img {
+  border-radius: 50%;
+}
+.ih-item.circle .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ih-item .profileImage {
+  position: relative;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  margin: 0 auto;
+  background-position:center center;
+  background-size:cover;
+}
+
+.img-circle {
+  position: absolute;
+  width:100%;
+  height: 100%;
+  left:0;
+  top:0;
+  z-index: 10;
+}
+
+.roster
+{
+  font-family:Raleway;
+  font-size:18px;
+  vertical-align:top;
+  text-align:left;
+}
+
+.roster td {
+  align:left;
+  display:inline-block;
+}
+
+
+h2
+{
+  font-family: Raleway;
+  font-size:21px;
+  color: purple;
+}
+
+#sisters tr {
+  margin-bottom:20px;
+}
+
+#sisters {
+  margin-top:50px;
+}
+
+#footer
+{
+  border-top: 1px;
+  height: 15px;
+  padding: 15px 25px 25px;
+  font-size: 11px;
+  font-family:Raleway;
+  text-align: center;
+}
+
+#fbEvent {
+  font-family:Great Vibes;
+  font-size:30px;
+  color:purple;
+}
+
+#faqs h2 {
+  font-family:Raleway;
+  font-size:17px;
+  color:purple;
+}
+
+#faqs {
+  font-family:Raleway;
+  font-size:16px;
+  color:black;
+}
+
+.socialMediaIcon {
+  width:100%;
+}
+
+#socialMediaTable td {
+  padding:30px;
+}
+
+.socialMediaTitles {
+  font-family:Raleway;
+  color:purple;
+}
+
+#emails {
+  font-family:Raleway;
+  color:black;
+  font-size:15px;
+  padding-top, padding-bottom:10px;
+}
+
+#emails a {
+  color:purple;
+}
