@@ -14,6 +14,7 @@
 		D51072C9218CED9300A6922C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51072C8218CED9300A6922C /* LoginViewController.swift */; };
 		D51072CB218CF48A00A6922C /* FinanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51072CA218CF48A00A6922C /* FinanceTableViewCell.swift */; };
 		D51072EF218FD78F00A6922C /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51072EE218FD78F00A6922C /* CreateAccountViewController.swift */; };
+		D51072F12190C35800A6922C /* addDuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51072F02190C35800A6922C /* addDuesViewController.swift */; };
 		D5FFB04F20A49045000A5D41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFB04E20A49045000A5D41 /* AppDelegate.swift */; };
 		D5FFB05620A49045000A5D41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5FFB05420A49045000A5D41 /* Main.storyboard */; };
 		D5FFB05820A49047000A5D41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5FFB05720A49047000A5D41 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		D51072C8218CED9300A6922C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51072CA218CF48A00A6922C /* FinanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTableViewCell.swift; sourceTree = "<group>"; };
 		D51072EE218FD78F00A6922C /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		D51072F02190C35800A6922C /* addDuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDuesViewController.swift; sourceTree = "<group>"; };
 		D5FFB04B20A49045000A5D41 /* VTaKDPhi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VTaKDPhi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FFB04E20A49045000A5D41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5FFB05520A49045000A5D41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				D51072EE218FD78F00A6922C /* CreateAccountViewController.swift */,
 				D51072C6218CE76200A6922C /* FinanceTableViewController.swift */,
 				D51072CA218CF48A00A6922C /* FinanceTableViewCell.swift */,
+				D51072F02190C35800A6922C /* addDuesViewController.swift */,
 				D5FFB05420A49045000A5D41 /* Main.storyboard */,
 				D5FFB05720A49047000A5D41 /* Assets.xcassets */,
 				D5FFB05920A49047000A5D41 /* LaunchScreen.storyboard */,
@@ -238,6 +241,7 @@
 				D5FFB06A20AD6C8A000A5D41 /* CLTyping.swift in Sources */,
 				D51072EF218FD78F00A6922C /* CreateAccountViewController.swift in Sources */,
 				D50B772C214F2E54000D292E /* GuestViewController.swift in Sources */,
+				D51072F12190C35800A6922C /* addDuesViewController.swift in Sources */,
 				D51072C7218CE76200A6922C /* FinanceTableViewController.swift in Sources */,
 				D51072CB218CF48A00A6922C /* FinanceTableViewCell.swift in Sources */,
 			);

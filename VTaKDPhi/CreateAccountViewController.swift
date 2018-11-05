@@ -19,11 +19,15 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet var choosePictureButton: UIButton!
     var imagePicker = UIImagePickerController()
     var ref: DatabaseReference!
+    var storageRef: StorageReference!
     let applicationDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var email: String = ""
+    var password: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        storageRef = Storage.storage().reference()
         imageView.clipsToBounds = true
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         choosePictureButton.imageView?.contentMode = .scaleAspectFit
@@ -56,7 +60,16 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let lastName = lastNameTextField.text!
         let nickName = nicknameTextField.text!
         let birthday = datePicker.date
-        let profileImage = UIImagePNGRepresentation(imageView.image!)
+        
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let birthdayString = formatter.string(from: birthday)
+        
+        // Create a reference to the file you want to upload
+        print(firstName)
+        let imageRef = storageRef.child("images/\(firstName).png")
         
         if firstName == "" || lastName == "" || nickName == ""{
             createAlart(title: "Error Occurred", message: "Missing information, please enter all required fields.")
@@ -66,8 +79,25 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let user : [String: AnyObject] = ["firstName" : firstName as AnyObject,
                                          "lastName" : lastName as AnyObject,
                                          "nickName" : nickName as AnyObject,
-                                         "birthday" : birthday as AnyObject]
-        ref.child("Users").child(applicationDelegate.username).setValue(user)
+                                         "birthday" : birthdayString as AnyObject]
+        
+        if let profileImageData = UIImagePNGRepresentation(imageView.image!){
+//            imageRef.putData(profileImageData)
+            imageRef.putData(profileImageData, metadata: nil, completion: {
+                (metadata, error) in
+                if error != nil{
+                    print("something went wrong")
+                    self.createAlart(title: "Error Occurred", message: "Cannot upload image!")
+                    return
+                }
+                print("upload success")
+                print(self.applicationDelegate.username)
+                self.ref.child("Users").child(self.applicationDelegate.username).setValue(user)
+                self.login(email: self.email, password: self.password, username: self.applicationDelegate.username)
+                
+            })
+        }
+       
         
         
     }
@@ -86,5 +116,18 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func login(email: String, password: String, username: String){
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            //error occured
+            if error != nil{
+                self.createAlart(title: "Error Occurred", message: "Sorry, we are unabled to find your account, please try again.")
+            }else{
+                self.applicationDelegate.username = username
+                self.performSegue(withIdentifier: "Show Dashboard", sender: self)
+                print("login success")
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         let emailAddr = usernameTextField.text!
         let password = passwordTextField.text!
+        var username = ""
         
         if emailAddr == "" || password == ""{
             self.createAlart(title: "Error Occurred", message: "Please enter your username / password.")
@@ -48,16 +49,26 @@ class LoginViewController: UIViewController {
             
             //user is authorized to signin / signup
             if self.authUsers.values.contains(emailAddr){
+                //find the uid of user
+                for user in self.authUsers{
+                    if user.value == emailAddr{
+                        username = user.key
+                    }
+                }
+                
+                
                 Auth.auth().createUser(withEmail: emailAddr, password: password) { (authResult, error) in
                     
                     if error == nil{
-                        self.applicationDelegate.username = email
-                        self.createAlart(title: "Account Created", message: "Your account has been created! Welcome to Greeky!")
+                        self.applicationDelegate.username = username
                         self.performSegue(withIdentifier: "Create Account", sender: self)
+                        self.createAlart(title: "Account Created", message: "Your account has been created! Welcome to Greeky!")
+//                    }
                     }else{
                         //if error, could be that user is already created
-                        self.login(email: emailAddr, password: password)
+                        self.login(email: emailAddr, password: password, username: username)
                     }
+//
                     
                 }
             }else{
@@ -70,13 +81,13 @@ class LoginViewController: UIViewController {
     }
     
     
-    func login(email: String, password: String){
+    func login(email: String, password: String, username: String){
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             //error occured
             if error != nil{
                 self.createAlart(title: "Error Occurred", message: "Sorry, we are unabled to find your account, please try again.")
             }else{
-                self.applicationDelegate.username = email
+                self.applicationDelegate.username = username
                 self.performSegue(withIdentifier: "Show Dashboard", sender: self)
                 print("login success")
             }
@@ -98,7 +109,12 @@ class LoginViewController: UIViewController {
     }
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-
+        if segue.identifier == "Create Account"{
+            let createAccountViewController: CreateAccountViewController = segue.destination as! CreateAccountViewController!
+            createAccountViewController.email = usernameTextField.text!
+            createAccountViewController.password = passwordTextField.text!
+            
+        }
     }
     
     @IBAction func keyboardDone(_ sender: UITextField){

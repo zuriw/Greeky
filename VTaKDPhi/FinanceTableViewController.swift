@@ -16,6 +16,8 @@ struct DueStruct {
     let dueDate : String!
     let late : Bool!
     let description : String!
+    let people: [String]!
+    let all: Bool!
 }
 
 
@@ -32,8 +34,84 @@ class FinanceTableViewController: UITableViewController{
         super.viewDidLoad()
         //post()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.getDuesFromDb()
+    }
+    
+    @IBAction func unwindToFinanceTableViewController (segue : UIStoryboardSegue) {
+        if segue.identifier == "Add Dues"{
+            let addDuesViewController: addDuesViewController = segue.source as! addDuesViewController
+            if addDuesViewController.amountTextField.text == "" || addDuesViewController.descriptionTextView.text == ""{
+                createAlart(title: "Error Occurred", message: "Please entered all information")
+                return
+            }
+            
+            var name = addDuesViewController.categoryPickerData[addDuesViewController.categoryPickerView.selectedRow(inComponent: 0)]
+            if name == "Other"{
+                if addDuesViewController.otherCategoryTextField.text == ""{
+                    createAlart(title: "Error Occurred", message: "Please enter a category")
+                    return
+                }
+                name = addDuesViewController.otherCategoryTextField.text!
+            }
+            
+            let description = addDuesViewController.descriptionTextView.text!
+            if let amount = Float(addDuesViewController.amountTextField.text!){
+                print("amount converted to Float")
+                let formatter = DateFormatter()
+                // initially set the format based on your datepicker date / server String
+                formatter.dateFormat = "yyyy-MM-dd"
+                
+                let dueDate = formatter.string(from: addDuesViewController.dueDateDatePicker.date)
+                
+                var people = [String]()
+                people.append(addDuesViewController.peoplePickerData[addDuesViewController.peoplePickerView.selectedRow(inComponent: 0)])
+                var all = false
+                if people.first == "All"{
+                    all = true
+                }
+                
+                post(name: name, amount: amount, dueDate: dueDate, description: description, people: people)
+            }else{
+                createAlart(title: "Error Occurred", message: "Please enter valid number for amount")
+                return
+            }
+        }
+        
+    }
+        
+        
+    
+    
+    
+    func post(name: String, amount: Float, dueDate: String, description: String, people: [String]){
+        var all = true
+        if people.count > 0{
+            all = false
+        }
+        ref = Database.database().reference()
+        
+        let due : [String: AnyObject] = ["name" : name as AnyObject,
+                                         "cost" : amount as AnyObject,
+                                         "dueDate" : dueDate as AnyObject,
+                                         "late" : false as AnyObject,
+                                         "description" : description as AnyObject,
+                                         "people": people as AnyObject,
+                                         "all": all as AnyObject]
+        ref.child("Dues").childByAutoId().setValue(due){
+            (error: Error?, ref: DatabaseReference) in
+            if let error = error {
+                print("data cannot be saved")
+            }else{
+                self.getDuesFromDb()
+                self.financeTableView.reloadData()
+            }
+        }
+    }
+    
+    func getDuesFromDb(){
         ref = Database.database().reference()
         //dues = applicationDelegate.dues
+        dues.removeAll()
         ref.child("Dues").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             
             for item in snapshot.children{
@@ -45,28 +123,18 @@ class FinanceTableViewController: UITableViewController{
                     let dueDate = due["dueDate"] as! String
                     let late = due["late"] as! Bool
                     let description = due["description"] as! String
-                    self.dues.insert(DueStruct(id: id, name: name, cost: cost, dueDate: dueDate, late: late, description: description), at: 0)
+                    let people = due["people"] as! [String]
+                    let all = due["all"] as! Bool
                     
-                    }
+                    ///only show dues that are yours / all
+                    
+                    //if people.contains("All") || people.contains()
+                    self.dues.insert(DueStruct(id: id, name: name, cost: cost, dueDate: dueDate, late: late, description: description, people: people, all: all), at: 0)
+                    
                 }
+            }
             self.financeTableView.reloadData()
         })
-    }
-    
-    func post(){
-        let name = "Nat Board Dues"
-        let cost = 40.00
-        let dueDate = "10-20-2018"
-        let late = true
-        let description = "Payment plan can be created based on your needs"
-        ref = Database.database().reference()
-        
-        let due : [String: AnyObject] = ["name" : name as AnyObject,
-                                         "cost" : cost as AnyObject,
-                                         "dueDate" : dueDate as AnyObject,
-                                         "late" : late as AnyObject,
-                                         "description" : description as AnyObject]
-        ref.child("Dues").childByAutoId().setValue(due)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,6 +185,12 @@ class FinanceTableViewController: UITableViewController{
             })
             
         }
+    }
+    
+    func createAlart(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
